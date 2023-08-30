@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-helm-dev-gitaction
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: echoserver=demo-test-registry.cn-hangzhou.cr.aliyuncs.com/cidemo/echo-server,webserver=demo-test-registry.cn-hangzhou.cr.aliyuncs.com/cidemo/echo-web-server
+    argocd-image-updater.argoproj.io/echoserver.helm.image-name: image.echoServer.repository
+    argocd-image-updater.argoproj.io/echoserver.helm.image-tag: image.echoServer.tag
+    argocd-image-updater.argoproj.io/echoserver.update-strategy: latest
+    argocd-image-updater.argoproj.io/webserver.helm.image-name: image.echoWebServer.repository
+    argocd-image-updater.argoproj.io/webserver.helm.image-tag: image.echoWebServer.tag
+    argocd-image-updater.argoproj.io/webserver.update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
+spec:
+  destination:
+    name: ''
+    namespace: app-helm-dev-gitaction
+    server: 'https://39.98.173.81:6443'
+  source:
+    path: manifests/helm/echo-server
+    repoURL: 'git@github.com:ivan-cai/gitops-demo.git'
+    targetRevision: test2
+    helm:
+      valueFiles:
+        - values-dev.yaml
+  sources: []
+  project: default
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
