@@ -30,8 +30,9 @@ env:
   NAMESPACE: test
   IMAGE: echo-web-server
   TAG: ${{ github.sha }}
-  ACK_CLUSTER_ID: c82db86351cab4398af27f4227b72f422
+  ACK_CLUSTER_ID: c1e15dd81b9ff4b2997010c9a6da156b5
   ACK_DEPLOYMENT_NAME: nginx-deployment
+  CLUSTER_TYPE: ackone
 
   ACR_EE_REGISTRY: demo-test2-registry.cn-hangzhou.cr.aliyuncs.com
   ACR_EE_INSTANCE_ID: cri-51h42p2q5opek9is
@@ -82,6 +83,7 @@ jobs:
     - name: Set K8s context
       uses: ivan-cai/ack-set-context@v1.2
       with:
+        cluster-type: "${{ env.CLUSTER_TYPE }}"
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
         access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
         cluster-id: "${{ env.ACK_CLUSTER_ID }}"
@@ -90,3 +92,4 @@ jobs:
     - name: Deploy
       run: |-
         kubectl get ns kube-system -ojsonpath='{.metadata.uid}'
+        kubectl apply -f manifests/directory/staging/app-githubaction.yaml
