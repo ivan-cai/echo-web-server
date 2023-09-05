@@ -30,7 +30,7 @@ env:
   NAMESPACE: test
   IMAGE: echo-web-server
   TAG: ${{ github.sha }}
-  ACK_CLUSTER_ID: c1e15dd81b9ff4b2997010c9a6da156b5
+  ACK_CLUSTER_ID: c82db86351cab4398af27f4227b72f422
   ACK_DEPLOYMENT_NAME: nginx-deployment
   CLUSTER_TYPE: ack
 
@@ -91,5 +91,4 @@ jobs:
     # 3.2 Deploy the image to the ACK cluster
     - name: Deploy
       run: |-
-        kubectl get ns kube-system
-        kubectl apply -f manifests/directory/staging/app-githubaction.yaml
+        kubectl get ns kube-system -ojsonpath='{.metadata.uid}'
