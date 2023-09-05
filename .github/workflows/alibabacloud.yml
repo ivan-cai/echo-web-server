@@ -32,7 +32,7 @@ env:
   TAG: ${{ github.sha }}
   ACK_CLUSTER_ID: c1e15dd81b9ff4b2997010c9a6da156b5
   ACK_DEPLOYMENT_NAME: nginx-deployment
-  CLUSTER_TYPE: ACKONE
+  CLUSTER_TYPE: ACKOne
 
   ACR_EE_REGISTRY: demo-test2-registry.cn-hangzhou.cr.aliyuncs.com
   ACR_EE_INSTANCE_ID: cri-51h42p2q5opek9is
