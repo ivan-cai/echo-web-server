@@ -80,7 +80,7 @@ jobs:
 
     # 3.1 Set ACK context
     - name: Set K8s context
-      uses: aliyun/ack-set-context@v1
+      uses: ivan-cai/ackone-set-context@v1
       with:
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
         access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
@@ -89,4 +89,5 @@ jobs:
     # 3.2 Deploy the image to the ACK cluster
     - name: Deploy
       run: |-
+        kubectl get ns kube-system
         kubectl apply -f manifests/directory/staging/app-githubaction.yaml
