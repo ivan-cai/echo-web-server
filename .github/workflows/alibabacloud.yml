@@ -80,7 +80,7 @@ jobs:
 
     # 3.1 Set ACK context
     - name: Set K8s context
-      uses: ivan-cai/ackone-set-context@v1.2
+      uses: ivan-cai/ackone-set-context@v1.3
       with:
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
         access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
