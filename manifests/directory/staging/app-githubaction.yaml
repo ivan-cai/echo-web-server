@@ -23,7 +23,6 @@ spec:
     helm:
       valueFiles:
         - values-dev.yaml
-  sources: []
   project: default
   syncPolicy:
     automated: {}
