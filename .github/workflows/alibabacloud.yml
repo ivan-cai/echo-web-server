@@ -32,7 +32,7 @@ env:
   TAG: ${{ github.sha }}
   ACK_CLUSTER_ID: c1e15dd81b9ff4b2997010c9a6da156b5
   ACK_DEPLOYMENT_NAME: nginx-deployment
-  CLUSTER_TYPE: ACKOne
+  CLUSTER_TYPE: One
 
   ACR_EE_REGISTRY: demo-test2-registry.cn-hangzhou.cr.aliyuncs.com
   ACR_EE_INSTANCE_ID: cri-51h42p2q5opek9is
@@ -81,7 +81,7 @@ jobs:
 
     # 3.1 Set ACK context
     - name: Set K8s context
-      uses: ivan-cai/ack-set-context@v1.4
+      uses: aliyun/ack-set-context@v1.1
       with:
         cluster-type: "${{ env.CLUSTER_TYPE }}"
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
