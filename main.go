@@ -11,7 +11,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		logs.Infof("Hello Echo Web Server for v2 test")
+		logs.Infof("Hello Echo Web Server for v2")
 		json.NewEncoder(w).Encode("Hello Echo Web Server")
 	})
 
